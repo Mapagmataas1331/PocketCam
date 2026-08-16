@@ -1,0 +1,39 @@
+# Rust
+/target/
+**/*.rs.bk
+
+# Native / MSVC leftovers
+.vs/
+**/*.user
+**/x64/
+**/ARM64/
+**/Debug/
+**/Release/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.lib
+*.exe
+!redist/**
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store
+ehthumbs.db
+
+# Editors
+.idea/
+*.iml
+*.swp
+*~
+
+# Secrets and local machine state (never commit)
+*.pem
+.env
+.env.*
+settings.json
+
+# Logs
+*.log

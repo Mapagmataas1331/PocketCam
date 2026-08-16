@@ -1,0 +1,63 @@
+[workspace]
+resolver = "2"
+members = [".", "crates/ipc"]
+
+[workspace.package]
+edition = "2021"
+license-file = "LICENSE"
+
+[package]
+name = "pocketcam"
+version = "0.1.0"
+edition.workspace = true
+license-file.workspace = true
+description = "Use a phone browser as a Windows webcam"
+readme = "README.md"
+publish = false
+
+[[bin]]
+name = "pocketcam"
+path = "src/main.rs"
+
+[dependencies]
+pocketcam-ipc = { path = "crates/ipc" }
+anyhow = "1"
+axum = { version = "0.8", features = ["ws"] }
+axum-server = { version = "0.8", features = ["tls-rustls-no-provider"] }
+eframe = { version = "0.31", default-features = true }
+egui = "0.31"
+futures-util = { version = "0.3", default-features = false, features = ["sink"] }
+local-ip-address = "0.6"
+parking_lot = "0.12"
+qrcode = "0.14"
+rand = "0.8"
+rcgen = "0.13"
+rustls = { version = "0.23", default-features = false, features = ["ring", "std", "tls12"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+resvg = "0.44"
+tiny-skia = "0.11"
+usvg = "0.44"
+tokio = { version = "1", features = ["full"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+webrtc = "0.12"
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Dxgi",
+    "Win32_Graphics_Gdi",
+    "Win32_Media",
+    "Win32_Media_MediaFoundation",
+    "Win32_System_Com",
+    "Win32_System_Performance",
+    "Win32_System_ProcessStatus",
+    "Win32_System_SystemInformation",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_System_Variant",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_NetworkManagement_IpHelper",
+    "Win32_NetworkManagement_Ndis",
+] }
