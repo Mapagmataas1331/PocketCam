@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PocketCam — Your phone is a Windows webcam</title>
+  <meta name="description" content="Use Safari or Chrome as a Windows webcam. Nothing to install on the phone. Same Wi-Fi. No accounts, no cloud.">
+  <link rel="icon" href="pocketcam.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0a0a0c">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0a0c;
+      --card: #16161a;
+      --line: #2a2a32;
+      --text: #eee;
+      --muted: #9ca3af;
+      --accent: #7c3aed;
+      --accent-text: #f5f3ff;
+      --warn: #fbbf24;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: var(--accent-text); }
+    header, main, footer { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-top: 28px;
+      padding-bottom: 8px;
+    }
+    header img { width: 40px; height: 40px; }
+    header span { font-weight: 650; letter-spacing: 0.02em; }
+    .hero { padding: 48px 0 24px; }
+    h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      font-weight: 700;
+      margin: 0 0 12px;
+    }
+    .lede { color: var(--muted); font-size: 1.15rem; max-width: 40rem; margin: 0 0 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--accent-text);
+      text-decoration: none;
+      font-weight: 650;
+      padding: 12px 20px;
+      border-radius: 8px;
+    }
+    .btn:hover { filter: brightness(1.08); }
+    .ver { color: var(--muted); font-size: 0.95rem; }
+    .flow {
+      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      color: var(--muted);
+      margin: 28px 0 0;
+      font-size: 0.95rem;
+    }
+    .shots {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 12px;
+      margin: 40px 0;
+    }
+    .shots figure { margin: 0; }
+    .shots img {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--card);
+    }
+    .shots figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
+    h2 { font-size: 1.25rem; margin: 36px 0 12px; }
+    ol { padding-left: 1.2rem; }
+    li { margin: 8px 0; }
+    .notes {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 16px 0 48px;
+    }
+    .notes div {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .notes h3 { margin: 0 0 8px; font-size: 1rem; }
+    .notes p { margin: 0; color: var(--muted); }
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 24px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    footer a { color: var(--muted); }
+    @media (max-width: 720px) {
+      .shots, .notes { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images/Logo.png" alt="">
+    <span>PocketCam</span>
+  </header>
+  <main>
+    <section class="hero">
+      <h1>Your phone is a Windows webcam.</h1>
+      <p class="lede">Nothing to install on the phone. Open PocketCam, scan the QR with Safari or Chrome, allow the camera, keep the page open. Same Wi-Fi. No accounts, no cloud, no cable.</p>
+      <div class="actions">
+        <a class="btn" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe">Download for Windows 11</a>
+        <span class="ver" id="ver">Latest GitHub Release</span>
+      </div>
+      <p class="flow">Phone browser → your PC → any app that can pick a webcam</p>
+    </section>
+
+    <div class="shots">
+      <figure>
+        <img src="images/desktop-start.png" alt="PocketCam on Windows waiting for the phone, with QR and session token">
+        <figcaption>Windows — scan the QR</figcaption>
+      </figure>
+      <figure>
+        <img src="images/phone-start.png" alt="Phone page ready, session token entered, Start camera">
+        <figcaption>Phone — Start camera</figcaption>
+      </figure>
+      <figure>
+        <img src="images/desktop-running.png" alt="PocketCam on Windows live, phone picture in the preview">
+        <figcaption>Windows — live</figcaption>
+      </figure>
+      <figure>
+        <img src="images/phone-running.png" alt="Phone page live, camera on, End session">
+        <figcaption>Phone — live</figcaption>
+      </figure>
+    </div>
+
+    <h2>How</h2>
+    <ol>
+      <li>Install PocketCamSetup.exe. One UAC prompt registers the camera and a private-network firewall rule.</li>
+      <li>Open PocketCam from the Start menu.</li>
+      <li>On your phone, scan the QR (Safari or Chrome).</li>
+      <li>Continue past the certificate warning — it is for this PC, not a public website.</li>
+      <li>Tap Start camera. Keep that page in the foreground.</li>
+      <li>In OBS, Discord, Zoom, Teams, or Windows Camera, choose <strong>PocketCam</strong>.</li>
+    </ol>
+
+    <div class="notes">
+      <div>
+        <h3>Certificate</h3>
+        <p>Continue past the warning. PocketCam uses a certificate for this PC, not a public site.</p>
+      </div>
+      <div>
+        <h3>Your LAN only</h3>
+        <p>Same Wi-Fi or the phone’s hotspot. Google STUN is off. The stream does not leave the LAN.</p>
+      </div>
+      <div>
+        <h3>SmartScreen</h3>
+        <p>Unsigned builds warn. More info → Run anyway. Expected until the installer is code-signed.</p>
+      </div>
+      <div>
+        <h3>Source</h3>
+        <p>Official GitHub build only — not MIT. jsQR and the Windows Virtual Camera sample have their own licenses.</p>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <a href="https://github.com/Mapagmataas1331/PocketCam">github.com/Mapagmataas1331/PocketCam</a>
+    · Windows 11 · nothing to install on the phone
+  </footer>
+  <script>
+    fetch("https://api.github.com/repos/Mapagmataas1331/PocketCam/releases/latest")
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function (d) {
+        if (d && d.tag_name) {
+          document.getElementById("ver").textContent = d.tag_name;
+        }
+      })
+      .catch(function () {});
+  </script>
+</body>
+</html>
