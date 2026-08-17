@@ -12,7 +12,7 @@
   <sub>
     Installer from the
     <a href="https://github.com/Mapagmataas1331/PocketCam/releases/latest">latest GitHub Release</a>.
-    Until a release is published, build from source — see For developers.
+    Unsigned builds may show SmartScreen — More info, then Run anyway.
   </sub>
 </p>
 
@@ -64,7 +64,7 @@ Keep the phone page open. Phones stop the camera when that page is gone — that
 
 ## Install (Windows 11)
 
-1. [Download the installer](https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe) from the latest GitHub Release. It places the app in Program Files, registers the virtual camera, and adds a Windows Firewall rule for a private network. (Until that installer is published, build from source — see For developers — and run `scripts\register-camera.ps1` once, elevated.)
+1. [Download the installer](https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe) from the latest GitHub Release. It places the app in Program Files, registers the virtual camera, and adds a Windows Firewall rule for a private network. Unsigned builds may show SmartScreen — More info, then Run anyway. Developers building from source can skip Setup and run `scripts\register-camera.ps1` once, elevated.
 2. Open **PocketCam** from the Start menu.
 3. On your phone, scan the QR (Safari or Chrome).
 4. Continue past the certificate warning — it is expected. PocketCam uses a certificate for *this PC*, not a public website.
@@ -98,8 +98,8 @@ Local preview on the phone pauses after a few seconds idle (the PC still gets th
 
 | Place | Path | What |
 |---|---|---|
-| Install | `C:\Program Files\PocketCam\` | App and camera driver |
-| Camera | `C:\ProgramData\PocketCam\` | Shared frame buffer (`nv12.ring`) and camera DLL |
+| Install | `C:\Program Files\PocketCam\` | App and camera driver (`VirtualCameraMediaSource.dll`) |
+| Camera | `C:\ProgramData\PocketCam\` | Shared frame buffer (`nv12.ring`) |
 | Per-user | `%LOCALAPPDATA%\PocketCam\` | Certificates and `settings.json` |
 | Recordings | `%USERPROFILE%\Videos\PocketCam\` | `pocketcam-YYYYMMDD-HHMMSS.mp4` (you can pick another folder) |
 
@@ -116,7 +116,9 @@ src/                 Windows host
 web/                 Phone page
 crates/ipc/          NV12 ring the camera driver reads
 redist/              VirtualCameraMediaSource.dll
+installer/           Inno Setup (PocketCam.iss)
 scripts/             Run helpers and elevated camera registration
+.github/workflows/   CI, release, GitHub Pages
 images/              README banner, logo, screens
 pocketcam.svg        App and site icon
 THIRD_PARTY.md       jsQR and camera-sample licenses
@@ -129,7 +131,7 @@ scripts\run.bat
 scripts\run-debug.bat
 ```
 
-PowerShell: `scripts\run.ps1` or `scripts\run.ps1 -Debug`. Or `cargo run --release`. Rust stable. The packaged installer is the next ship step; until then, register the camera once (elevated):
+PowerShell: `scripts\run.ps1` or `scripts\run.ps1 -Debug`. Or `cargo run --release`. Rust stable. Users install `PocketCamSetup.exe` from Releases (`installer/PocketCam.iss`). For a cargo-run build, register the camera once (elevated):
 
 ```text
 scripts\register-camera.ps1

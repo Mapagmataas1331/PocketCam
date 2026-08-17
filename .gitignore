@@ -16,6 +16,7 @@
 *.lib
 *.exe
 !redist/**
+installer/Output/
 
 # OS
 Thumbs.db

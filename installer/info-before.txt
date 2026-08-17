@@ -1,0 +1,13 @@
+Close OBS, Windows Camera, Discord, Zoom, and Teams before continuing.
+
+PocketCam registers a camera driver. Those apps can lock the file so Setup cannot replace it.
+
+Setup needs Administrator permission to:
+
+- Install into Program Files
+- Register the PocketCam camera for Windows
+- Add a Windows Firewall rule named "PocketCam HTTPS" (Private network, inbound TCP for pocketcam.exe)
+
+The stream stays on your LAN. Google STUN stays off unless you turn it on in Settings.
+
+Windows may warn on an unsigned build (SmartScreen). More info, then Run anyway. That is expected until the installer is code-signed.
