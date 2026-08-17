@@ -65,6 +65,16 @@ impl Vcam {
         std::mem::take(&mut *self.notices.lock())
     }
 
+    /// Drop the Windows camera so uninstall can delete the DLL.
+    pub fn unregister() -> Result<()> {
+        ensure_mf()?;
+        unsafe {
+            remove_named(FRIENDLY);
+            remove_named(LEGACY_VCAM_NAME);
+        }
+        Ok(())
+    }
+
     pub fn is_on(&self) -> bool {
         self.on.load(Ordering::Relaxed)
     }

@@ -1,5 +1,7 @@
 //! PocketCam Windows host: HTTPS + QR session + H.264 preview.
 
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+
 mod cert;
 mod decode;
 mod depay;
@@ -28,6 +30,11 @@ use crate::shared::Shared;
 use crate::ui::PocketCamApp;
 
 fn main() -> Result<()> {
+    if std::env::args().any(|a| a == "--unregister-camera") {
+        let _ = crate::vcam::Vcam::unregister();
+        return Ok(());
+    }
+
     tracing_subscriber::fmt()
         .with_env_filter(
             tracing_subscriber::EnvFilter::try_from_default_env()

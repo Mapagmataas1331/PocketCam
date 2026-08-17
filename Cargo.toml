@@ -8,7 +8,7 @@ license-file = "LICENSE"
 
 [package]
 name = "pocketcam"
-version = "0.1.0"
+version = "0.1.1"
 edition.workspace = true
 license-file.workspace = true
 description = "Use a phone browser as a Windows webcam"
@@ -18,6 +18,13 @@ publish = false
 [[bin]]
 name = "pocketcam"
 path = "src/main.rs"
+
+[build-dependencies]
+png = "0.17"
+resvg = "0.44"
+tiny-skia = "0.11"
+usvg = "0.44"
+winresource = "0.1"
 
 [dependencies]
 pocketcam-ipc = { path = "crates/ipc" }

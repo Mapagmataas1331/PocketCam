@@ -39,4 +39,14 @@ if ($Mode -eq "install") {
 }
 
 cmd /c "netsh advfirewall firewall delete rule name=`"$rule`" >nul 2>&1"
+
+# Frame Server (Local Service) keeps VirtualCameraMediaSource.dll mapped.
+# Stop it so uninstall can delete the DLL. It starts again on the next camera use.
+Get-Process -Name pocketcam -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+foreach ($name in @("FrameServer", "FrameServerMonitor")) {
+    $svc = Get-Service -Name $name -ErrorAction SilentlyContinue
+    if ($svc -and $svc.Status -eq "Running") {
+        Stop-Service -Name $name -Force -ErrorAction SilentlyContinue
+    }
+}
 exit 0

@@ -1,5 +1,5 @@
 #ifndef MyAppVersion
-  #define MyAppVersion "0.1.0"
+  #define MyAppVersion "0.1.1"
 #endif
 
 #define MyAppName "PocketCam"
@@ -28,13 +28,13 @@ ArchitecturesInstallIn64BitMode=x64compatible
 MinVersion=10.0.22000
 OutputDir=Output
 OutputBaseFilename=PocketCamSetup
-SetupIconFile=pocketcam.ico
+SetupIconFile=..\target\pocketcam.ico
 UninstallDisplayIcon={app}\{#MyAppExeName}
 UninstallDisplayName={#MyAppName}
 Compression=lzma2
 SolidCompression=yes
 WizardStyle=modern
-CloseApplications=yes
+CloseApplications=force
 RestartApplications=no
 UsedUserAreasWarning=no
 AppMutex=Local\PocketCam.single
@@ -47,9 +47,12 @@ VersionInfoDescription=Phone browser as a Windows webcam
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
+[Tasks]
+Name: "desktopicon"; Description: "Create a &desktop shortcut"; GroupDescription: "Additional shortcuts:"
+
 [Files]
 Source: "..\target\release\pocketcam.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\redist\VirtualCameraMediaSource.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace
+Source: "..\redist\VirtualCameraMediaSource.dll"; DestDir: "{app}"; Flags: ignoreversion restartreplace uninsrestartdelete
 Source: "..\LICENSE"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\THIRD_PARTY.md"; DestDir: "{app}"; Flags: ignoreversion
 Source: "install-hooks.ps1"; DestDir: "{app}"; Flags: ignoreversion
@@ -62,6 +65,7 @@ Name: "{commonappdata}\PocketCam"
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; WorkingDir: "{app}"; Tasks: desktopicon
 
 [Registry]
 Root: HKLM; Subkey: "SOFTWARE\Classes\CLSID\{#MyAppClsid}"; Flags: uninsdeletekey
@@ -73,4 +77,5 @@ Filename: "{sys}\WindowsPowerShell\v1.0\powershell.exe"; Parameters: "-NoProfile
 Filename: "{app}\{#MyAppExeName}"; Description: "Open PocketCam"; Flags: nowait postinstall skipifsilent
 
 [UninstallRun]
+Filename: "{app}\{#MyAppExeName}"; Parameters: "--unregister-camera"; RunOnceId: "UnregVcam"; Flags: runhidden waituntilterminated
 Filename: "{sys}\WindowsPowerShell\v1.0\powershell.exe"; Parameters: "-NoProfile -ExecutionPolicy Bypass -File ""{app}\install-hooks.ps1"" -Mode uninstall"; RunOnceId: "Firewall"; Flags: runhidden waituntilterminated
