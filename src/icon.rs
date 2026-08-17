@@ -1,4 +1,4 @@
-//! Rasterize `pocketcam.svg` for the window, tray, and heading.
+//! Rasterize `images/pocketcam.svg` for the window, tray, and heading.
 //! The mark stays the SVG — this file only recolors it.
 
 use anyhow::{bail, Context, Result};
@@ -16,7 +16,7 @@ use windows::Win32::UI::WindowsAndMessaging::{
     ICON_SMALL, WM_SETICON,
 };
 
-pub const SVG: &str = include_str!("../pocketcam.svg");
+pub const SVG: &str = include_str!("../images/pocketcam.svg");
 
 const LIGHT_FG: &str = "#18181b";
 const DARK_FG: &str = "#f4f4f5";
@@ -87,7 +87,7 @@ pub fn raster(size: u32, light_theme: bool) -> Result<Vec<u8>> {
 
 pub fn raster_color(size: u32, color: &str) -> Result<Vec<u8>> {
     let svg = SVG.replace("currentColor", color);
-    let tree = usvg::Tree::from_str(&svg, &usvg::Options::default()).context("parse pocketcam.svg")?;
+    let tree = usvg::Tree::from_str(&svg, &usvg::Options::default()).context("parse images/pocketcam.svg")?;
     let sz = tree.size();
     let dim = sz.width().max(sz.height()).max(1.0);
     let scale = size as f32 / dim;

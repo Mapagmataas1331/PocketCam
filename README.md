@@ -119,8 +119,7 @@ redist/              VirtualCameraMediaSource.dll
 installer/           Inno Setup (PocketCam.iss)
 scripts/             Run helpers and elevated camera registration
 .github/workflows/   CI, release, GitHub Pages
-images/              README banner, logo, screens
-pocketcam.svg        App and site icon
+images/              README banner, logo, screens, app icon (pocketcam.svg)
 THIRD_PARTY.md       jsQR and camera-sample licenses
 ```
 
