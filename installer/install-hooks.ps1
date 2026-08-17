@@ -49,4 +49,17 @@ foreach ($name in @("FrameServer", "FrameServerMonitor")) {
         Stop-Service -Name $name -Force -ErrorAction SilentlyContinue
     }
 }
+Start-Sleep -Milliseconds 800
+
+if ($AppDir) {
+    $dll = Join-Path $AppDir "VirtualCameraMediaSource.dll"
+    if (Test-Path $dll) {
+        Remove-Item -LiteralPath $dll -Force -ErrorAction SilentlyContinue
+    }
+}
+
+$ring = Join-Path $dataDir "nv12.ring"
+if (Test-Path $ring) {
+    Remove-Item -LiteralPath $ring -Force -ErrorAction SilentlyContinue
+}
 exit 0

@@ -103,6 +103,8 @@ Local preview on the phone pauses after a few seconds idle (the PC still gets th
 | Per-user | `%LOCALAPPDATA%\PocketCam\` | Certificates and `settings.json` |
 | Recordings | `%USERPROFILE%\Videos\PocketCam\` | `pocketcam-YYYYMMDD-HHMMSS.mp4` (you can pick another folder) |
 
+Uninstall removes `C:\Program Files\PocketCam\` (the folder, not only the files). Certificates, settings, and recordings stay. The camera ring under ProgramData is deleted.
+
 The phone stores nothing PocketCam-owned.
 
 ---
