@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Test
+        run: cargo test --workspace
+      - name: Build
+        run: cargo build --release
+      - name: Install Inno Setup
+        run: choco install innosetup --no-progress -y
+      - name: Compile installer
+        shell: pwsh
+        run: |
+          $ver = $env:GITHUB_REF_NAME
+          if ($ver.StartsWith("v")) { $ver = $ver.Substring(1) }
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            $iscc = "${env:ProgramFiles}\Inno Setup 6\ISCC.exe"
+          }
+          if (-not (Test-Path $iscc)) {
+            throw "ISCC.exe not found"
+          }
+          & $iscc /DMyAppVersion=$ver installer\PocketCam.iss
+          if ($LASTEXITCODE -ne 0) { throw "iscc failed: $LASTEXITCODE" }
+      - name: Checksums
+        shell: pwsh
+        run: |
+          $setup = "installer\Output\PocketCamSetup.exe"
+          if (-not (Test-Path $setup)) { throw "missing $setup" }
+          $hash = (Get-FileHash $setup -Algorithm SHA256).Hash.ToLower()
+          "$([IO.Path]::GetFileName($setup))  $hash" | Set-Content -Encoding ascii SHA256SUMS
+          Get-Content SHA256SUMS
+      - name: Publish GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: >
+          gh release create "${{ github.ref_name }}"
+          installer/Output/PocketCamSetup.exe
+          SHA256SUMS
+          --title "PocketCam ${{ github.ref_name }}"
+          --notes "Windows 11 installer. Unsigned builds may show SmartScreen — More info, then Run anyway. On the phone, continue past the certificate warning; it is for this PC, not a public site."
