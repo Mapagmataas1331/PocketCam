@@ -62,6 +62,26 @@ Phone browser  →  your PC  →  any app that can pick a webcam
 
 Keep the phone page open. Phones stop the camera when that page is gone — that is iOS and Android, not PocketCam. While you are live, the page holds a Screen Wake Lock so auto-lock does not kill the session.
 
+## Compared with
+
+Phone as a Windows webcam. This is the **free** tier. Paid means that row needs an upgrade.
+
+| | **PocketCam** | [Iriun](https://iriun.com) | [Camo](https://camo.com) | [DroidCam](https://www.dev47apps.com) | [iVCam](https://www.e2esoft.com/ivcam/) | [ManyCam](https://manycam.com) |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| iPhone → Windows | Yes | Yes | Yes | No | Yes | Yes |
+| Android → Windows | Yes | Yes | Yes | Yes | Yes | Yes |
+| Phone app | No | Yes | Yes | Yes | Yes | Yes |
+| Free 1080p, no watermark | Yes | No | Yes | No | No | No |
+| Free 4K | Yes | No | Paid | No | Paid | Paid |
+| Wi-Fi | Yes | Yes | Yes | Yes | Yes | Yes |
+| USB | No | Yes | Yes | Yes | Yes | No |
+| Virtual microphone | No | Yes | Yes | Yes | Yes | Yes |
+| Normal Windows webcam | Yes | Yes | Yes | Yes | Yes | Yes |
+| Windows 10 | No | Yes | Yes | Yes | Yes | Yes |
+| Source on GitHub | Yes* | No | No | No | No | No |
+
+\*You can read the source. It is not an OSI license — see [License](#license). PocketCam is Windows 11, Wi-Fi or hotspot, no USB, no virtual mic. Camo is the closest free 1080p alternative if you want a native phone app and a cable. Competitors change; this was checked August 2026.
+
 ## Install (Windows 11)
 
 1. [Download the installer](https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe) from the latest GitHub Release. It places the app in Program Files, registers the virtual camera, and adds a Windows Firewall rule for a private network. Unsigned builds may show SmartScreen — More info, then Run anyway. Developers building from source can skip Setup and run `scripts\register-camera.ps1` once, elevated.
