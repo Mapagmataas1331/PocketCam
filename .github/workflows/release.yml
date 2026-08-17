@@ -45,9 +45,22 @@ jobs:
       - name: Publish GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: >
-          gh release create "${{ github.ref_name }}"
-          installer/Output/PocketCamSetup.exe
-          SHA256SUMS
-          --title "PocketCam ${{ github.ref_name }}"
-          --notes "Windows 11 installer. Unsigned builds may show SmartScreen — More info, then Run anyway. On the phone, continue past the certificate warning; it is for this PC, not a public site."
+        shell: pwsh
+        run: |
+          $tag = $env:GITHUB_REF_NAME
+          $title = "PocketCam $tag"
+          $notes = "Windows 11 installer. Unsigned builds may show SmartScreen — More info, then Run anyway. On the phone, continue past the certificate warning; it is for this PC, not a public site."
+          $assets = @(
+            "installer/Output/PocketCamSetup.exe",
+            "SHA256SUMS"
+          )
+          gh release view $tag *> $null
+          if ($LASTEXITCODE -eq 0) {
+            gh release upload $tag @assets --clobber
+            if ($LASTEXITCODE -ne 0) { throw "gh release upload failed" }
+            gh release edit $tag --title $title --notes $notes
+            if ($LASTEXITCODE -ne 0) { throw "gh release edit failed" }
+          } else {
+            gh release create $tag @assets --title $title --notes $notes
+            if ($LASTEXITCODE -ne 0) { throw "gh release create failed" }
+          }
