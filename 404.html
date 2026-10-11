@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page not found — PocketCam</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/pocketcam.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0b0a14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+  <style>
+    :root { --bg: #0b0a14; --bg-2: #120f24; --glow: rgba(124, 92, 255, 0.28); --text: #f1f0f7; --muted: #a6a3bd; --accent: #7c5cff; --line: rgba(255, 255, 255, 0.1); --card: rgba(255, 255, 255, 0.045); }
+    @media (prefers-color-scheme: light) {
+      :root { --bg: #f6f5fb; --bg-2: #ecebfa; --glow: rgba(124, 92, 255, 0.2); --text: #17152b; --muted: #575470; --accent: #5b3df5; --line: rgba(30, 20, 80, 0.1); --card: rgba(255, 255, 255, 0.72); }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; min-height: 100vh; display: grid; place-items: center; padding: 32px 20px;
+      font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+      color: var(--text); line-height: 1.6;
+      background: radial-gradient(900px 520px at 78% -8%, var(--glow), transparent 70%), linear-gradient(180deg, var(--bg), var(--bg-2));
+    }
+    main { width: min(34rem, 100%); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-weight: 650; }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); line-height: 1.08; letter-spacing: -0.025em; margin: 28px 0 12px; }
+    p { color: var(--muted); margin: 0 0 24px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn { display: inline-flex; padding: 11px 18px; border-radius: 12px; font-weight: 650; text-decoration: none; border: 1px solid var(--line); background: var(--card); color: var(--text); }
+    .btn-primary { background: var(--accent); border-color: transparent; color: #fff; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <a class="brand" href="/"><img src="/images/apple-touch-icon.png" alt="" width="34" height="34"><span>PocketCam</span></a>
+    <h1>Page not found.</h1>
+    <p>This page does not exist. PocketCam lives on a single page: download, setup steps and FAQ are all there.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="/">Go to PocketCam</a>
+      <a class="btn" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest">Latest release</a>
+    </div>
+  </main>
+</body>
+</html>

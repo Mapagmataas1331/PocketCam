@@ -6,38 +6,70 @@
   <title>PocketCam — Your phone is a Windows webcam</title>
   <meta name="description" content="Turn your iPhone or Android phone into a Windows 11 webcam. Scan a QR in Safari or Chrome — nothing to install on the phone. Same Wi-Fi, no accounts, no cloud, up to 4K60.">
   <link rel="canonical" href="https://pocketcam.ma.cyou/">
-  <link rel="icon" href="pocketcam.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="icon" href="/pocketcam.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
   <meta name="theme-color" content="#0b0a14" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)">
   <meta name="color-scheme" content="dark light">
+  <meta name="author" content="Timofey - Mapagmataas">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="PocketCam">
   <meta property="og:url" content="https://pocketcam.ma.cyou/">
   <meta property="og:title" content="PocketCam — Your phone is a Windows webcam">
   <meta property="og:description" content="Scan a QR in Safari or Chrome and your phone becomes a camera named PocketCam in OBS, Discord, Zoom and Teams. Nothing to install on the phone.">
-  <meta property="og:image" content="https://pocketcam.ma.cyou/images/og.jpg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:image" content="https://pocketcam.ma.cyou/images/og.png">
+  <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="PocketCam — phone camera streaming into a Windows app">
+  <meta property="og:image:alt" content="PocketCam: your phone is a Windows webcam. The PocketCam window on Windows showing a live picture from a phone, next to the phone page in the browser.">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="PocketCam — Your phone is a Windows webcam">
   <meta name="twitter:description" content="Scan a QR in Safari or Chrome. Nothing to install on the phone. Same Wi-Fi, no accounts, no cloud.">
-  <meta name="twitter:image" content="https://pocketcam.ma.cyou/images/og.jpg">
+  <meta name="twitter:image" content="https://pocketcam.ma.cyou/images/og.png">
+  <meta name="twitter:image:alt" content="PocketCam: your phone is a Windows webcam. The PocketCam window on Windows showing a live picture from a phone, next to the phone page in the browser.">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://pocketcam.ma.cyou/#app",
     "name": "PocketCam",
     "operatingSystem": "Windows 11",
     "applicationCategory": "MultimediaApplication",
-    "description": "Use an iPhone or Android phone browser as a Windows 11 webcam over your local Wi-Fi.",
+    "description": "Use an iPhone or Android phone browser as a Windows 11 webcam over your local Wi-Fi. Nothing to install on the phone, no accounts, no cloud.",
     "url": "https://pocketcam.ma.cyou/",
+    "image": "https://pocketcam.ma.cyou/images/og.png",
+    "screenshot": [
+      "https://pocketcam.ma.cyou/images/desktop-running.webp",
+      "https://pocketcam.ma.cyou/images/phone-running.webp"
+    ],
     "downloadUrl": "https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe",
+    "releaseNotes": "https://github.com/Mapagmataas1331/PocketCam/releases/latest",
+    "featureList": [
+      "Phone browser (Safari on iPhone, Chrome on Android) as the camera, nothing to install on the phone",
+      "Shows up as a camera named PocketCam in OBS, Discord, Zoom, Teams and Windows Camera",
+      "Local network only: no accounts, no cloud",
+      "480p up to 4K, up to 60 fps; 1080p30 by default",
+      "Records the phone's original H.264 stream to MP4"
+    ],
+    "isAccessibleForFree": true,
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "sameAs": ["https://github.com/Mapagmataas1331/PocketCam", "https://projects.ma.cyou/p/pocketcam"],
     "author": { "@type": "Person", "name": "Timofey - Mapagmataas", "url": "https://ma.cyou/" }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "PocketCam",
+    "url": "https://pocketcam.ma.cyou/",
+    "inLanguage": "en",
+    "about": { "@id": "https://pocketcam.ma.cyou/#app" }
   }
   </script>
 

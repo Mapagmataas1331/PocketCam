@@ -1,0 +1,16 @@
+{
+  "name": "PocketCam",
+  "short_name": "PocketCam",
+  "description": "Your phone is a Windows webcam. Scan a QR in Safari or Chrome, nothing to install on the phone.",
+  "start_url": "/",
+  "scope": "/",
+  "lang": "en",
+  "display": "browser",
+  "background_color": "#0b0a14",
+  "theme_color": "#0b0a14",
+  "icons": [
+    { "src": "/images/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/images/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "/pocketcam.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

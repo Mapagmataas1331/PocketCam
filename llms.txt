@@ -1,0 +1,18 @@
+# PocketCam
+
+> Free Windows 11 app that turns an iPhone or Android phone browser into a webcam over the same Wi-Fi. Scan a QR in Safari or Chrome, allow the camera, and apps such as OBS, Discord, Zoom, Teams and Windows Camera see a camera named PocketCam. Nothing to install on the phone, no accounts, no cloud.
+
+## Links
+
+- [Download PocketCamSetup.exe](https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe): latest Windows 11 installer
+- [Releases](https://github.com/Mapagmataas1331/PocketCam/releases): versions and release notes
+- [Source on GitHub](https://github.com/Mapagmataas1331/PocketCam): readable source; not open-source licensed, see LICENSE
+- [Project page](https://projects.ma.cyou/p/pocketcam): screenshots and technical notes
+
+## Requirements
+
+- A Windows 11 PC
+- iPhone with Safari, or Android with Chrome
+- Phone and PC on the same Wi-Fi, or the PC on the phone's hotspot
+
+Not in v1: USB, a virtual microphone, Windows 10, or several phones at once.
