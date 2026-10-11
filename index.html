@@ -2,185 +2,846 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>PocketCam — Your phone is a Windows webcam</title>
-  <meta name="description" content="Use Safari or Chrome as a Windows webcam. Nothing to install on the phone. Same Wi-Fi. No accounts, no cloud.">
+  <meta name="description" content="Turn your iPhone or Android phone into a Windows 11 webcam. Scan a QR in Safari or Chrome — nothing to install on the phone. Same Wi-Fi, no accounts, no cloud, up to 4K60.">
+  <link rel="canonical" href="https://pocketcam.ma.cyou/">
   <link rel="icon" href="pocketcam.svg" type="image/svg+xml">
-  <meta name="theme-color" content="#0a0a0c">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b0a14" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PocketCam">
+  <meta property="og:url" content="https://pocketcam.ma.cyou/">
+  <meta property="og:title" content="PocketCam — Your phone is a Windows webcam">
+  <meta property="og:description" content="Scan a QR in Safari or Chrome and your phone becomes a camera named PocketCam in OBS, Discord, Zoom and Teams. Nothing to install on the phone.">
+  <meta property="og:image" content="https://pocketcam.ma.cyou/images/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="PocketCam — phone camera streaming into a Windows app">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PocketCam — Your phone is a Windows webcam">
+  <meta name="twitter:description" content="Scan a QR in Safari or Chrome. Nothing to install on the phone. Same Wi-Fi, no accounts, no cloud.">
+  <meta name="twitter:image" content="https://pocketcam.ma.cyou/images/og.jpg">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "PocketCam",
+    "operatingSystem": "Windows 11",
+    "applicationCategory": "MultimediaApplication",
+    "description": "Use an iPhone or Android phone browser as a Windows 11 webcam over your local Wi-Fi.",
+    "url": "https://pocketcam.ma.cyou/",
+    "downloadUrl": "https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "Timofey - Mapagmataas", "url": "https://ma.cyou/" }
+  }
+  </script>
+
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("pocketcam-theme");
+        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
+
   <style>
     :root {
       color-scheme: dark;
-      --bg: #0a0a0c;
-      --card: #16161a;
-      --line: #2a2a32;
-      --text: #eee;
-      --muted: #9ca3af;
-      --accent: #7c3aed;
-      --accent-text: #f5f3ff;
-      --warn: #fbbf24;
+      --bg: #0b0a14;
+      --bg-2: #120f24;
+      --glow-1: rgba(124, 92, 255, 0.28);
+      --glow-2: rgba(56, 189, 248, 0.12);
+      --card: rgba(255, 255, 255, 0.045);
+      --card-solid: #15132a;
+      --card-hover: rgba(255, 255, 255, 0.07);
+      --line: rgba(255, 255, 255, 0.1);
+      --line-strong: rgba(255, 255, 255, 0.18);
+      --text: #f1f0f7;
+      --muted: #a6a3bd;
+      --accent: #7c5cff;
+      --accent-2: #9d86ff;
+      --accent-ink: #ffffff;
+      --accent-soft: rgba(124, 92, 255, 0.16);
+      --focus: #b9a8ff;
+      --shadow: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+      --star: rgba(255, 255, 255, 0.75);
+      --radius: 14px;
+      --mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
     }
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #f6f5fb;
+      --bg-2: #ecebfa;
+      --glow-1: rgba(124, 92, 255, 0.2);
+      --glow-2: rgba(56, 189, 248, 0.16);
+      --card: rgba(255, 255, 255, 0.72);
+      --card-solid: #ffffff;
+      --card-hover: rgba(255, 255, 255, 0.95);
+      --line: rgba(30, 20, 80, 0.1);
+      --line-strong: rgba(30, 20, 80, 0.2);
+      --text: #17152b;
+      --muted: #575470;
+      --accent: #5b3df5;
+      --accent-2: #5b3df5;
+      --accent-ink: #ffffff;
+      --accent-soft: rgba(91, 61, 245, 0.1);
+      --focus: #5b3df5;
+      --shadow: 0 24px 60px -28px rgba(40, 20, 120, 0.35);
+      --star: transparent;
+    }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) {
+        color-scheme: light;
+        --bg: #f6f5fb;
+        --bg-2: #ecebfa;
+        --glow-1: rgba(124, 92, 255, 0.2);
+        --glow-2: rgba(56, 189, 248, 0.16);
+        --card: rgba(255, 255, 255, 0.72);
+        --card-solid: #ffffff;
+        --card-hover: rgba(255, 255, 255, 0.95);
+        --line: rgba(30, 20, 80, 0.1);
+        --line-strong: rgba(30, 20, 80, 0.2);
+        --text: #17152b;
+        --muted: #575470;
+        --accent: #5b3df5;
+        --accent-2: #5b3df5;
+        --accent-ink: #ffffff;
+        --accent-soft: rgba(91, 61, 245, 0.1);
+        --focus: #5b3df5;
+        --shadow: 0 24px 60px -28px rgba(40, 20, 120, 0.35);
+        --star: transparent;
+      }
+    }
+
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: "Segoe UI", system-ui, sans-serif;
+      font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
       color: var(--text);
-      line-height: 1.5;
+      line-height: 1.6;
+      font-size: 16px;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
-    a { color: var(--accent-text); }
-    header, main, footer { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-    header {
+    /* Quiet night sky: soft glows plus a few stars (stars hidden in light mode). */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(900px 520px at 78% -8%, var(--glow-1), transparent 70%),
+        radial-gradient(700px 480px at -8% 18%, var(--glow-2), transparent 70%),
+        radial-gradient(1px 1px at 12% 22%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 28% 8%, var(--star), transparent 60%),
+        radial-gradient(1.5px 1.5px at 44% 30%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 63% 14%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 86% 36%, var(--star), transparent 60%),
+        radial-gradient(1.5px 1.5px at 92% 9%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 7% 64%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 52% 58%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 74% 72%, var(--star), transparent 60%),
+        radial-gradient(1px 1px at 33% 84%, var(--star), transparent 60%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+    }
+
+    a { color: var(--accent-2); text-underline-offset: 3px; }
+    a:hover { text-decoration-thickness: 2px; }
+    :focus-visible {
+      outline: 2px solid var(--focus);
+      outline-offset: 3px;
+      border-radius: 6px;
+    }
+    .skip {
+      position: absolute;
+      left: 12px;
+      top: -48px;
+      background: var(--accent);
+      color: var(--accent-ink);
+      padding: 8px 14px;
+      border-radius: 8px;
+      z-index: 10;
+      text-decoration: none;
+    }
+    .skip:focus { top: 12px; }
+
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .top {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding-top: 28px;
-      padding-bottom: 8px;
+      gap: 16px;
+      padding-top: 22px;
+      padding-bottom: 22px;
     }
-    header img { width: 40px; height: 40px; }
-    header span { font-weight: 650; letter-spacing: 0.02em; }
-    .hero { padding: 48px 0 24px; }
-    h1 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      line-height: 1.15;
-      font-weight: 700;
-      margin: 0 0 12px;
-    }
-    .lede { color: var(--muted); font-size: 1.15rem; max-width: 40rem; margin: 0 0 28px; }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .btn {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--accent-text);
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--text);
       text-decoration: none;
       font-weight: 650;
-      padding: 12px 20px;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
+    .brand img { width: 34px; height: 34px; border-radius: 9px; }
+    .nav { display: flex; align-items: center; gap: 4px; margin-left: auto; }
+    .nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      padding: 6px 10px;
       border-radius: 8px;
     }
-    .btn:hover { filter: brightness(1.08); }
-    .ver { color: var(--muted); font-size: 0.95rem; }
+    .nav a:hover { color: var(--text); background: var(--card); }
+    .icon-btn {
+      display: inline-grid;
+      place-items: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--text);
+      cursor: pointer;
+      padding: 0;
+    }
+    .icon-btn:hover { background: var(--card-hover); border-color: var(--line-strong); }
+    .icon-btn svg { width: 18px; height: 18px; }
+    .icon-sun { display: none; }
+    :root[data-theme="light"] .icon-sun { display: block; }
+    :root[data-theme="light"] .icon-moon { display: none; }
+    @media (prefers-color-scheme: light) {
+      :root:not([data-theme="dark"]) .icon-sun { display: block; }
+      :root:not([data-theme="dark"]) .icon-moon { display: none; }
+    }
+
+    /* Hero */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+      gap: 56px;
+      align-items: center;
+      padding: 40px 0 72px;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin: 0 0 20px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+    }
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 3.6rem);
+      line-height: 1.06;
+      letter-spacing: -0.025em;
+      font-weight: 750;
+      margin: 0 0 18px;
+      text-wrap: balance;
+    }
+    h1 .grad {
+      background: linear-gradient(92deg, var(--accent) 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 34rem;
+      margin: 0 0 28px;
+      text-wrap: pretty;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 650;
+      font-size: 1rem;
+      padding: 13px 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--accent-ink);
+      box-shadow: 0 10px 30px -10px rgba(124, 92, 255, 0.7);
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 14px 34px -10px rgba(124, 92, 255, 0.85); }
+    .btn-ghost {
+      color: var(--text);
+      background: var(--card);
+      border-color: var(--line);
+    }
+    .btn-ghost:hover { background: var(--card-hover); border-color: var(--line-strong); }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin: 16px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .meta li { display: inline-flex; align-items: center; gap: 6px; }
+    .meta a { color: var(--muted); }
     .flow {
-      font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
+      font-family: var(--mono);
+      font-size: 0.85rem;
       color: var(--muted);
       margin: 28px 0 0;
-      font-size: 0.95rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
     }
+    .flow span {
+      border: 1px solid var(--line);
+      background: var(--card);
+      padding: 3px 10px;
+      border-radius: 8px;
+      color: var(--text);
+    }
+
+    .stage {
+      position: relative;
+      padding-right: 13%;
+      padding-bottom: 6%;
+    }
+    .stage .pc {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow);
+      background: #111;
+    }
+    .stage .phone {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 27%;
+      height: auto;
+      border-radius: 18px;
+      border: 1px solid var(--line-strong);
+      box-shadow: var(--shadow), 0 0 0 6px var(--bg);
+      background: #111;
+    }
+    .stage::after {
+      content: "";
+      position: absolute;
+      inset: 10% 20% 0 10%;
+      z-index: -1;
+      background: radial-gradient(closest-side, var(--glow-1), transparent);
+      filter: blur(20px);
+    }
+
+    /* Sections */
+    section.wrap { padding-top: 64px; padding-bottom: 64px; }
+    .kicker {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-2);
+      margin: 0 0 8px;
+    }
+    h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin: 0 0 12px;
+      text-wrap: balance;
+    }
+    .sub { color: var(--muted); margin: 0 0 32px; max-width: 42rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+    }
+
+    /* Steps */
+    .steps {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      counter-reset: step;
+    }
+    .steps li { padding: 22px 22px 24px; counter-increment: step; }
+    .steps li::before {
+      content: counter(step);
+      display: inline-grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
+      background: var(--accent-soft);
+      color: var(--accent-2);
+      font-weight: 700;
+      font-family: var(--mono);
+      margin-bottom: 14px;
+    }
+    .steps h3 { margin: 0 0 6px; font-size: 1.08rem; }
+    .steps p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+
     .shots {
       display: grid;
-      grid-template-columns: 1.7fr 1fr;
-      gap: 12px;
-      margin: 40px 0;
+      grid-template-columns: 1.54fr 0.462fr;
+      gap: 16px;
+      margin-top: 28px;
     }
     .shots figure { margin: 0; }
     .shots img {
+      display: block;
       width: 100%;
+      height: auto;
+      border-radius: 12px;
       border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--card);
+      background: var(--card-solid);
     }
-    .shots figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 6px; }
-    h2 { font-size: 1.25rem; margin: 36px 0 12px; }
-    ol { padding-left: 1.2rem; }
-    li { margin: 8px 0; }
-    .notes {
+    .shots figcaption { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+
+    /* Features */
+    .features {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
-      margin: 16px 0 48px;
     }
-    .notes div {
+    .feature { padding: 22px; transition: background-color 0.15s ease, border-color 0.15s ease; }
+    .feature:hover { background: var(--card-hover); border-color: var(--line-strong); }
+    .feature svg {
+      width: 22px;
+      height: 22px;
+      color: var(--accent-2);
+      margin-bottom: 12px;
+    }
+    .feature h3 { margin: 0 0 6px; font-size: 1.02rem; }
+    .feature p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+    .apps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 24px 0 0;
+      padding: 0;
+      list-style: none;
+      align-items: center;
+    }
+    .apps .label { color: var(--muted); font-size: 0.9rem; margin-right: 4px; }
+    .apps li:not(.label) {
       border: 1px solid var(--line);
       background: var(--card);
-      border-radius: 8px;
-      padding: 16px 18px;
-    }
-    .notes h3 { margin: 0 0 8px; font-size: 1rem; }
-    .notes p { margin: 0; color: var(--muted); }
-    footer {
-      border-top: 1px solid var(--line);
-      padding: 24px;
-      color: var(--muted);
+      padding: 4px 12px;
+      border-radius: 999px;
       font-size: 0.9rem;
     }
-    footer a { color: var(--muted); }
+
+    /* Requirements + download */
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 16px;
+    }
+    .panel { padding: 26px; }
+    .panel h3 { margin: 0 0 14px; font-size: 1.1rem; }
+    .checks { list-style: none; margin: 0; padding: 0; }
+    .checks li { position: relative; padding-left: 28px; margin: 10px 0; }
+    .checks li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.35em;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 1.5px var(--accent-2);
+    }
+    .checks li::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      top: calc(0.35em + 4px);
+      width: 5px;
+      height: 8px;
+      border: solid var(--accent-2);
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .muted { color: var(--muted); }
+    .small { font-size: 0.9rem; }
+    .not { margin: 16px 0 0; color: var(--muted); font-size: 0.92rem; }
+    .cta-panel {
+      background:
+        radial-gradient(500px 220px at 100% 0%, var(--accent-soft), transparent 70%),
+        var(--card);
+    }
+    .cta-panel ol { margin: 0 0 20px; padding-left: 1.2rem; }
+    .cta-panel li { margin: 8px 0; }
+    code {
+      font-family: var(--mono);
+      font-size: 0.88em;
+      background: var(--accent-soft);
+      padding: 1px 6px;
+      border-radius: 6px;
+    }
+
+    /* FAQ */
+    .faq { display: grid; gap: 10px; max-width: 820px; }
+    .faq details { padding: 0; }
+    .faq summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 16px 48px 16px 20px;
+      font-weight: 600;
+      position: relative;
+      border-radius: var(--radius);
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: "";
+      position: absolute;
+      right: 22px;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border: solid var(--muted);
+      border-width: 0 2px 2px 0;
+      transform: translateY(-70%) rotate(45deg);
+      transition: transform 0.2s ease;
+    }
+    .faq details[open] summary::after { transform: translateY(-30%) rotate(-135deg); }
+    .faq details > div { padding: 0 20px 18px; color: var(--muted); }
+    .faq details > div p { margin: 0 0 8px; }
+    .faq details > div p:last-child { margin: 0; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--line);
+      margin-top: 40px;
+      padding: 32px 0 44px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .foot {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 32px;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .foot nav { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+    .foot a { color: var(--muted); text-decoration: none; }
+    .foot a:hover { color: var(--text); text-decoration: underline; }
+    .foot .by a { color: var(--text); }
+    .legal { margin: 18px 0 0; font-size: 0.84rem; max-width: 52rem; }
+    .legal a { color: var(--muted); }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; gap: 40px; padding-top: 24px; }
+      .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
     @media (max-width: 720px) {
-      .shots, .notes { grid-template-columns: 1fr; }
+      .wrap { padding-left: 18px; padding-right: 18px; }
+      .top { padding-top: 14px; padding-bottom: 14px; }
+      .hero { padding-top: 12px; }
+      .nav a:not(.keep) { display: none; }
+      .steps, .features, .split { grid-template-columns: 1fr; }
+      section.wrap { padding-top: 48px; padding-bottom: 48px; }
+      .hero { padding-bottom: 48px; }
+      .actions .btn { flex: 1 1 auto; justify-content: center; }
+      .shots { gap: 10px; }
+      .shots figcaption { font-size: 0.78rem; }
+      .lede { font-size: 1.06rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .btn-primary:hover { transform: none; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <img src="images/Logo.png" alt="">
-    <span>PocketCam</span>
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="wrap top">
+    <a class="brand" href="#top" aria-label="PocketCam home">
+      <img src="images/apple-touch-icon.png" alt="" width="34" height="34">
+      <span>PocketCam</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a class="keep" href="https://github.com/Mapagmataas1331/PocketCam">GitHub</a>
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch theme" title="Switch theme">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </nav>
   </header>
-  <main>
-    <section class="hero">
-      <h1>Your phone is a Windows webcam.</h1>
-      <p class="lede">Nothing to install on the phone. Open PocketCam, scan the QR with Safari or Chrome, allow the camera, keep the page open. Same Wi-Fi. No accounts, no cloud, no cable.</p>
-      <div class="actions">
-        <a class="btn" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe">Download for Windows 11</a>
-        <span class="ver" id="ver">Latest GitHub Release</span>
+
+  <main id="main">
+    <div class="wrap hero" id="top">
+      <div>
+        <p class="eyebrow">Free for Windows 11 · no phone app</p>
+        <h1>Your phone is a <span class="grad">Windows webcam.</span></h1>
+        <p class="lede">Open PocketCam, scan the QR with Safari or Chrome, allow the camera. OBS, Discord, Zoom, Teams and the Windows Camera app see a camera named <strong>PocketCam</strong>. Same Wi-Fi — no accounts, no cloud, no cable.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+            Download for Windows 11
+          </a>
+          <a class="btn btn-ghost" href="#how">How it works</a>
+        </div>
+        <ul class="meta">
+          <li><a id="ver" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest">Latest release</a></li>
+          <li><a href="#faq-smartscreen">SmartScreen warning?</a></li>
+        </ul>
+        <p class="flow" aria-label="Phone browser to your PC to any app that can pick a webcam">
+          <span>Phone browser</span>→<span>your PC</span>→<span>any webcam app</span>
+        </p>
       </div>
-      <p class="flow">Phone browser → your PC → any app that can pick a webcam</p>
+      <div class="stage">
+        <img class="pc" src="images/desktop-running.webp" width="1280" height="831" alt="PocketCam on Windows, live, showing the phone's picture in the preview" fetchpriority="high">
+        <img class="phone" src="images/phone-running.webp" width="600" height="1298" alt="PocketCam phone page in Safari, live, with camera, resolution and FPS controls">
+      </div>
+    </div>
+
+    <section id="how" class="wrap">
+      <p class="kicker">How it works</p>
+      <h2>Three steps.</h2>
+      <p class="sub">The phone side is just a web page served by PocketCam on your PC. Keep it open while you are live.</p>
+      <ol class="steps">
+        <li class="card">
+          <h3>Install on your PC</h3>
+          <p>Run <code>PocketCamSetup.exe</code>. It registers the virtual camera and a private-network firewall rule, then open PocketCam from the Start menu.</p>
+        </li>
+        <li class="card">
+          <h3>Scan the QR on your phone</h3>
+          <p>Use Safari on iPhone or Chrome on Android. Continue past the certificate warning — it is for this PC — then tap <strong>Start camera</strong>.</p>
+        </li>
+        <li class="card">
+          <h3>Pick “PocketCam” in your app</h3>
+          <p>Choose <strong>PocketCam</strong> as the camera in OBS, Discord, Zoom, Teams or Windows Camera. That's it.</p>
+        </li>
+      </ol>
+      <div class="shots">
+        <figure>
+          <img src="images/desktop-start.webp" width="1280" height="831" loading="lazy" decoding="async" alt="PocketCam on Windows waiting for the phone, with a large QR code and session token">
+          <figcaption>Windows — waiting for the phone, with QR and token</figcaption>
+        </figure>
+        <figure>
+          <img src="images/phone-start.webp" width="600" height="1298" loading="lazy" decoding="async" alt="PocketCam phone page ready, with the session token and a Start camera button">
+          <figcaption>Phone — Start camera</figcaption>
+        </figure>
+      </div>
     </section>
 
-    <div class="shots">
-      <figure>
-        <img src="images/desktop-start.png" alt="PocketCam on Windows waiting for the phone, with QR and session token">
-        <figcaption>Windows — scan the QR</figcaption>
-      </figure>
-      <figure>
-        <img src="images/phone-start.png" alt="Phone page ready, session token entered, Start camera">
-        <figcaption>Phone — Start camera</figcaption>
-      </figure>
-      <figure>
-        <img src="images/desktop-running.png" alt="PocketCam on Windows live, phone picture in the preview">
-        <figcaption>Windows — live</figcaption>
-      </figure>
-      <figure>
-        <img src="images/phone-running.png" alt="Phone page live, camera on, End session">
-        <figcaption>Phone — live</figcaption>
-      </figure>
-    </div>
+    <section id="features" class="wrap">
+      <p class="kicker">Features</p>
+      <h2>A real webcam, without the phone app.</h2>
+      <p class="sub">Everything runs between your phone and your PC on your own network.</p>
+      <div class="features">
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg>
+          <h3>Zero install on the phone</h3>
+          <p>Safari on iPhone, Chrome on Android. A Home Screen shortcut is optional — it is still the browser.</p>
+        </article>
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0M2 9a15 15 0 0 1 20 0"/><circle cx="12" cy="19.5" r="1"/></svg>
+          <h3>Your LAN only</h3>
+          <p>The stream never leaves your Wi-Fi or phone hotspot. No accounts, no cloud. Google STUN stays off unless you turn it on.</p>
+        </article>
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 10l5-3v10l-5-3"/><rect x="2" y="6" width="13" height="12" rx="2"/></svg>
+          <h3>A real Windows camera</h3>
+          <p>Shows up as <strong>PocketCam</strong> in any app that can pick a webcam. No plugins needed.</p>
+        </article>
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 15V9l2.5 3L12 9v6M15 9h2.5a1.5 1.5 0 0 1 0 3H15v3"/></svg>
+          <h3>Up to 4K, up to 60 fps</h3>
+          <p>Pick 480p through 4K. The default is 1080p30 — free, with no watermark.</p>
+        </article>
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4" fill="currentColor"/></svg>
+          <h3>Record the original stream</h3>
+          <p>Saves the phone's H.264 to MP4 — not a second encode — in Videos\PocketCam or a folder you choose.</p>
+        </article>
+        <article class="card feature">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M15 14h3"/></svg>
+          <h3>Stays in the tray</h3>
+          <p>Close the window and the camera keeps running until you choose Exit.</p>
+        </article>
+      </div>
+      <ul class="apps" aria-label="Works with">
+        <li class="label">Works with</li>
+        <li>OBS</li>
+        <li>Discord</li>
+        <li>Zoom</li>
+        <li>Teams</li>
+        <li>Windows Camera</li>
+        <li>any app that can pick a webcam</li>
+      </ul>
+    </section>
 
-    <h2>How</h2>
-    <ol>
-      <li>Install PocketCamSetup.exe. One UAC prompt registers the camera and a private-network firewall rule.</li>
-      <li>Open PocketCam from the Start menu.</li>
-      <li>On your phone, scan the QR (Safari or Chrome).</li>
-      <li>Continue past the certificate warning — it is for this PC, not a public website.</li>
-      <li>Tap Start camera. Keep that page in the foreground.</li>
-      <li>In OBS, Discord, Zoom, Teams, or Windows Camera, choose <strong>PocketCam</strong>.</li>
-    </ol>
+    <section id="download" class="wrap">
+      <p class="kicker">Get started</p>
+      <h2>What you need.</h2>
+      <p class="sub">PocketCam v1 is a Windows 11 app for one phone at a time, over Wi-Fi.</p>
+      <div class="split">
+        <div class="card panel">
+          <h3>Requirements</h3>
+          <ul class="checks">
+            <li>A Windows 11 PC</li>
+            <li>iPhone with Safari, or Android with Chrome</li>
+            <li>Phone and PC on the <strong>same Wi-Fi</strong> — or the PC on the phone's hotspot</li>
+            <li>H.264 in the browser (Chrome and Safari send it; Firefox is untested)</li>
+          </ul>
+          <p class="not"><strong>Not in v1:</strong> USB, a virtual microphone, Windows 10, or several phones at once.</p>
+        </div>
+        <div class="card panel cta-panel">
+          <h3>Install</h3>
+          <ol>
+            <li>Download <code>PocketCamSetup.exe</code> from the latest GitHub Release.</li>
+            <li>If SmartScreen appears: <strong>More info</strong> → <strong>Run anyway</strong>.</li>
+            <li>Open <strong>PocketCam</strong> from the Start menu and scan the QR.</li>
+          </ol>
+          <div class="actions">
+            <a class="btn btn-primary" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest/download/PocketCamSetup.exe">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>
+              Download for Windows 11
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/Mapagmataas1331/PocketCam/releases/latest">Release notes</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <div class="notes">
-      <div>
-        <h3>Certificate</h3>
-        <p>Continue past the warning. PocketCam uses a certificate for this PC, not a public site.</p>
+    <section id="faq" class="wrap">
+      <p class="kicker">FAQ</p>
+      <h2>Troubleshooting.</h2>
+      <div class="faq">
+        <details class="card">
+          <summary>Why does the phone show a certificate warning?</summary>
+          <div><p>It is expected. PocketCam uses a certificate for <em>this PC</em>, not a public website. Continue past the warning and the phone page opens.</p></div>
+        </details>
+        <details class="card" id="faq-smartscreen">
+          <summary>Windows SmartScreen blocked the installer.</summary>
+          <div><p>Unsigned builds can show SmartScreen. Click <strong>More info</strong>, then <strong>Run anyway</strong>. Only download the installer from the official GitHub Releases.</p></div>
+        </details>
+        <details class="card">
+          <summary>The camera stopped when I locked the phone or switched apps.</summary>
+          <div><p>Phones stop the camera when the page is gone — that is iOS and Android, not PocketCam. Keep the PocketCam page open in the foreground. While you are live, it holds a Screen Wake Lock so auto-lock does not end the session.</p></div>
+        </details>
+        <details class="card">
+          <summary>The phone can't reach the PC.</summary>
+          <div><p>Make sure both are on the same Wi-Fi, or put the PC on the phone's hotspot. The installer adds a Windows Firewall rule for a <strong>private</strong> network. PocketCam also lets you choose which network address the QR points to.</p></div>
+        </details>
+        <details class="card">
+          <summary>I changed the resolution and the picture disappeared in OBS.</summary>
+          <div><p>After switching between 720p, 1080p and 4K, pick PocketCam once more in that app. You don't need to restart OBS.</p></div>
+        </details>
+        <details class="card">
+          <summary>The phone disconnected. Do I need a new QR?</summary>
+          <div><p>No. The same token works for about five minutes. <strong>New session</strong> makes a new one, and <strong>Show QR</strong> brings the code back.</p></div>
+        </details>
+        <details class="card">
+          <summary>Where do recordings go?</summary>
+          <div><p>To <code>Videos\PocketCam</code> as <code>pocketcam-YYYYMMDD-HHMMSS.mp4</code>, or to another folder you pick in Settings. Recording starts on the next keyframe.</p></div>
+        </details>
       </div>
-      <div>
-        <h3>Your LAN only</h3>
-        <p>Same Wi-Fi or the phone’s hotspot. Google STUN is off. The stream does not leave the LAN.</p>
-      </div>
-      <div>
-        <h3>SmartScreen</h3>
-        <p>Unsigned builds warn. More info → Run anyway. Expected until the installer is code-signed.</p>
-      </div>
-      <div>
-        <h3>Source</h3>
-        <p>Official GitHub build only — not MIT. jsQR and the Windows Virtual Camera sample have their own licenses.</p>
-      </div>
-    </div>
+    </section>
   </main>
+
   <footer>
-    <a href="https://github.com/Mapagmataas1331/PocketCam">github.com/Mapagmataas1331/PocketCam</a>
-    · Windows 11 · nothing to install on the phone
+    <div class="wrap">
+      <div class="foot">
+        <div class="by">Made by <a href="https://ma.cyou/">Timofey - Mapagmataas</a></div>
+        <nav aria-label="Footer">
+          <a href="https://github.com/Mapagmataas1331/PocketCam">GitHub</a>
+          <a href="https://github.com/Mapagmataas1331/PocketCam/releases">Releases</a>
+          <a href="https://projects.ma.cyou/">More projects</a>
+          <a href="https://ma.cyou/">ma.cyou</a>
+        </nav>
+      </div>
+      <p class="legal">Free to download and use from the official GitHub Releases. The source is readable on GitHub but not open-source licensed — see <a href="https://github.com/Mapagmataas1331/PocketCam/blob/main/LICENSE">LICENSE</a>. jsQR and the Windows Virtual Camera sample keep their own licenses (<a href="https://github.com/Mapagmataas1331/PocketCam/blob/main/THIRD_PARTY.md">THIRD_PARTY.md</a>).</p>
+    </div>
   </footer>
+
   <script>
+    (function () {
+      var root = document.documentElement;
+      var btn = document.getElementById("theme");
+      function current() {
+        var t = root.getAttribute("data-theme");
+        if (t) return t;
+        return window.matchMedia && matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+      }
+      function label() {
+        var next = current() === "dark" ? "light" : "dark";
+        btn.setAttribute("aria-label", "Switch to " + next + " theme");
+        btn.title = "Switch to " + next + " theme";
+      }
+      btn.addEventListener("click", function () {
+        var next = current() === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("pocketcam-theme", next); } catch (e) {}
+        label();
+      });
+      label();
+    })();
+
+    // Open a FAQ item when a link points straight at it (e.g. #faq-smartscreen).
+    function openFromHash() {
+      var el = location.hash && document.getElementById(location.hash.slice(1));
+      if (el && el.tagName === "DETAILS") el.open = true;
+    }
+    window.addEventListener("hashchange", openFromHash);
+    openFromHash();
+
     fetch("https://api.github.com/repos/Mapagmataas1331/PocketCam/releases/latest")
       .then(function (r) { return r.ok ? r.json() : Promise.reject(); })
       .then(function (d) {
         if (d && d.tag_name) {
-          document.getElementById("ver").textContent = d.tag_name;
+          var el = document.getElementById("ver");
+          el.textContent = d.tag_name + " — latest release";
+          if (d.html_url) el.href = d.html_url;
         }
       })
       .catch(function () {});
